@@ -261,14 +261,14 @@ export default function Inbox() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="mt-6 pt-6 border-t flex gap-3">
+                  {/* <div className="mt-6 pt-6 border-t flex gap-3">
                     <button className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition-colors">
                       ✅ Award RFP
                     </button>
                     <button className="px-6 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold transition-colors">
                       🗑️ Close
                     </button>
-                  </div>
+                  </div> */}
                 </div>
               ) : (
                 <div className="bg-white rounded-xl shadow-md p-12 text-center">

@@ -265,11 +265,8 @@ export default function Inbox() {
                     <button className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition-colors">
                       ✅ Award RFP
                     </button>
-                    <button className="px-6 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg font-semibold transition-colors">
-                      📧 Reply
-                    </button>
                     <button className="px-6 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold transition-colors">
-                      🗑️ Delete
+                      🗑️ Close
                     </button>
                   </div>
                 </div>

@@ -204,15 +204,33 @@ export default function CreateRFP() {
           message: `✅ RFP sent successfully to ${successCount} recipient(s)!`,
         });
 
-        // Save RFP to localStorage for tracking
-        const myRFPs = JSON.parse(localStorage.getItem("myRFPs") || "[]");
-        myRFPs.push({
-          ...rfp,
-          sentTo: validRecipients.map((r) => r.email),
-          createdAt: new Date().toISOString(),
-          status: "pending",
-        });
-        localStorage.setItem("myRFPs", JSON.stringify(myRFPs));
+        // Save RFP to MongoDB instead of localStorage
+        try {
+          const saveResponse = await fetch("http://localhost:5000/api/rfps", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              rfpId: rfp.id,
+              title: rfp.title,
+              budget: rfp.budget,
+              deliveryTimeline: rfp.deliveryTimeline,
+              items: rfp.items,
+              paymentTerms: rfp.paymentTerms,
+              warranty: rfp.warranty,
+              sentTo: validRecipients,
+              status: "pending",
+            }),
+          });
+
+          const saveData = await saveResponse.json();
+          if (!saveData.success) {
+            console.error("Failed to save RFP to database:", saveData.error);
+          } else {
+            console.log("✅ RFP saved to MongoDB:", saveData.data);
+          }
+        } catch (saveErr) {
+          console.error("Error saving RFP to database:", saveErr);
+        }
       } else {
         setSendStatus({
           success: false,
